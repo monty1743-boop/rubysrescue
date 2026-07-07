@@ -46,4 +46,21 @@ npm run preview
 
 ## Deploy
 
-Static output in `dist/` — deploy to GitHub Pages, Netlify, or Vercel.
+The site auto-deploys to GitHub Pages on every push to `main`.
+
+**Live URL:** https://monty1743-boop.github.io/rubysrescue/
+
+### First-time GitHub setup
+
+1. Open the repo on GitHub → **Settings** → **Pages**
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**
+3. Push to `main` — the workflow builds and publishes automatically
+
+### Manual build
+
+```bash
+npm run build
+npm run preview
+```
+
+Static output is written to `dist/`.

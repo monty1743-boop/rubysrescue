@@ -1,9 +1,9 @@
 ---
-import { heroImages } from '../data/site';
+import { heroImages, site } from '../data/site';
 ---
 
-<section class="relative overflow-hidden rounded-2xl shadow-lg" aria-label="Photo gallery">
-  <div class="slideshow relative aspect-[16/9] w-full bg-stone-900">
+<section class="relative overflow-hidden" aria-label="Welcome">
+  <div class="slideshow relative min-h-[420px] bg-ruby-900 md:min-h-[520px] lg:min-h-[580px]">
     {
       heroImages.map((src, index) => (
         <img
@@ -14,20 +14,49 @@ import { heroImages } from '../data/site';
         />
       ))
     }
-    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-  </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/20"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
 
-  <div class="absolute bottom-4 left-4 right-4 flex justify-center gap-2">
-    {
-      heroImages.map((_, index) => (
-        <button
-          type="button"
-          class="slideshow-dot h-2.5 w-2.5 rounded-full bg-white/50 transition hover:bg-white"
-          data-index={index}
-          aria-label={`Show slide ${index + 1}`}
-        />
-      ))
-    }
+    <div class="relative mx-auto flex min-h-[420px] max-w-6xl flex-col justify-end px-4 pb-10 pt-24 md:min-h-[520px] md:pb-14 lg:min-h-[580px]">
+      <div class="hero-copy max-w-3xl rounded-3xl border border-white/10 bg-black/35 p-6 shadow-2xl backdrop-blur-sm md:p-8">
+        <p class="text-xs font-bold uppercase tracking-[0.25em] text-white/90 md:text-sm">
+          Central Illinois Dog Rescue
+        </p>
+        <h1 class="font-display mt-3 text-4xl font-bold leading-[1.1] text-white drop-shadow-sm md:text-5xl lg:text-6xl">
+          Every dog deserves a second chance at love
+        </h1>
+        <p class="mt-4 max-w-xl text-base font-medium leading-relaxed text-white/95 md:text-lg">
+          We rescue dogs from high-kill shelters, restore their health, and place them in wonderful
+          forever homes — just south of Bloomington.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/available" class="btn btn-primary">Meet Our Dogs</a>
+          <a
+            href={site.applicationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary !border-white/40 !bg-white/15 !text-white hover:!bg-white/25"
+          >
+            Apply to Adopt
+          </a>
+          <a href={site.phoneTel} class="btn btn-sage">Call {site.phone}</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-5 right-4 flex gap-2 md:right-8">
+      {
+        heroImages.map((_, index) => (
+          <button
+            type="button"
+            class="slideshow-dot h-2 w-8 rounded-full bg-white/30 transition hover:bg-white/60"
+            data-index={index}
+            aria-label={`Show slide ${index + 1}`}
+          />
+        ))
+      }
+    </div>
   </div>
 </section>
 
@@ -38,35 +67,44 @@ import { heroImages } from '../data/site';
 
   function showSlide(index: number) {
     slides[current]?.classList.remove('is-active');
-    dots[current]?.classList.remove('bg-white');
-    dots[current]?.classList.add('bg-white/50');
+    dots[current]?.classList.remove('!bg-white');
+    dots[current]?.classList.add('bg-white/30');
     current = index;
     slides[current]?.classList.add('is-active');
-    dots[current]?.classList.remove('bg-white/50');
-    dots[current]?.classList.add('bg-white');
+    dots[current]?.classList.remove('bg-white/30');
+    dots[current]?.classList.add('!bg-white');
   }
 
   dots.forEach((dot) => {
-    dot.addEventListener('click', () => {
-      const index = Number(dot.dataset.index);
-      showSlide(index);
-    });
+    dot.addEventListener('click', () => showSlide(Number(dot.dataset.index)));
   });
 
   if (slides.length > 1) {
-    setInterval(() => showSlide((current + 1) % slides.length), 5000);
+    setInterval(() => showSlide((current + 1) % slides.length), 6000);
   }
 
-  dots[0]?.classList.add('bg-white');
+  dots[0]?.classList.add('!bg-white');
+  dots[0]?.classList.remove('bg-white/30');
 </script>
 
 <style>
   .slideshow-slide {
     opacity: 0;
-    transition: opacity 0.8s ease-in-out;
+    transition: opacity 1s ease-in-out;
+    transform: scale(1.03);
   }
 
   .slideshow-slide.is-active {
     opacity: 1;
+    transform: scale(1);
+    transition: opacity 1s ease-in-out, transform 6s ease-out;
+  }
+
+  .hero-copy h1 {
+    text-shadow: 0 2px 16px rgb(0 0 0 / 0.45);
+  }
+
+  .hero-copy p {
+    text-shadow: 0 1px 8px rgb(0 0 0 / 0.35);
   }
 </style>

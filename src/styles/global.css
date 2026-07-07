@@ -1,17 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ruby-50: #fdf4f3;
-  --color-ruby-100: #fce8e6;
-  --color-ruby-200: #f9d4d0;
-  --color-ruby-500: #c45c52;
-  --color-ruby-600: #a9443c;
-  --color-ruby-700: #8c3832;
-  --color-ruby-800: #74302b;
-  --color-warm-50: #faf8f5;
-  --color-warm-100: #f3ede4;
-  --color-warm-800: #3d3429;
-  --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+  --color-ruby-50: #fdf5f4;
+  --color-ruby-100: #fbe8e6;
+  --color-ruby-200: #f5d0cc;
+  --color-ruby-300: #e8a8a1;
+  --color-ruby-400: #d9786e;
+  --color-ruby-500: #c4564b;
+  --color-ruby-600: #a63f36;
+  --color-ruby-700: #8a332c;
+  --color-ruby-800: #722d28;
+  --color-ruby-900: #5f2925;
+
+  --color-sage-50: #f4f7f4;
+  --color-sage-100: #e4ece4;
+  --color-sage-200: #c9d9ca;
+  --color-sage-500: #6b8f71;
+  --color-sage-600: #547358;
+  --color-sage-700: #445c48;
+
+  --color-cream-50: #fdfbf7;
+  --color-cream-100: #f8f3ea;
+  --color-cream-200: #efe6d6;
+  --color-cream-800: #3f3830;
+  --color-cream-900: #2a2520;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
 }
 
 html {
@@ -19,5 +34,54 @@ html {
 }
 
 body {
-  @apply bg-warm-50 text-warm-800 antialiased;
+  @apply bg-cream-50 font-sans text-cream-900 antialiased;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Subtle paw-print texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.35;
+  background-image: radial-gradient(circle at 20% 20%, rgb(196 86 75 / 0.04) 0, transparent 50%),
+    radial-gradient(circle at 80% 0%, rgb(107 143 113 / 0.06) 0, transparent 40%),
+    radial-gradient(circle at 50% 100%, rgb(196 86 75 / 0.03) 0, transparent 45%);
+}
+
+.card {
+  @apply overflow-hidden rounded-3xl border border-cream-200/80 bg-white shadow-sm shadow-ruby-900/5;
+}
+
+.card-hover {
+  @apply transition duration-300 hover:-translate-y-0.5 hover:border-ruby-200 hover:shadow-lg hover:shadow-ruby-900/10;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition duration-200;
+}
+
+.btn-primary {
+  @apply bg-ruby-600 text-white shadow-md shadow-ruby-600/25 hover:bg-ruby-700 hover:shadow-lg hover:shadow-ruby-600/30;
+}
+
+.btn-secondary {
+  @apply border border-ruby-200 bg-white text-ruby-700 hover:border-ruby-300 hover:bg-ruby-50;
+}
+
+.btn-sage {
+  @apply bg-sage-600 text-white shadow-md shadow-sage-600/25 hover:bg-sage-700;
+}
+
+.section-label {
+  @apply text-xs font-bold uppercase tracking-[0.2em] text-sage-600;
+}
+
+.prose-content {
+  @apply text-base leading-relaxed text-stone-600 md:text-lg;
 }

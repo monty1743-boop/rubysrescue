@@ -2,22 +2,55 @@
 import Layout from '../layouts/Layout.astro';
 import HeroSlideshow from '../components/HeroSlideshow.astro';
 import Sidebar from '../components/Sidebar.astro';
+import PageLayout from '../components/PageLayout.astro';
 import { site } from '../data/site';
+
+const features = [
+  {
+    icon: '🐾',
+    title: 'Rescue',
+    description: 'We pull dogs from high-kill shelters and give them the medical care and love they need to heal.',
+    href: '/available',
+    cta: 'See available dogs',
+  },
+  {
+    icon: '🏡',
+    title: 'Adopt',
+    description: 'Every adoption saves a life and opens a spot for the next dog on death row. Apply today.',
+    href: '/application',
+    cta: 'Start application',
+  },
+  {
+    icon: '🛏️',
+    title: 'Board',
+    description: 'Trusted boarding in a caring environment. Call for availability and pricing.',
+    href: '/boarding',
+    cta: 'Learn about boarding',
+  },
+  {
+    icon: '🤝',
+    title: 'Volunteer',
+    description: 'We love volunteers! Please call ahead — we are a small private facility.',
+    href: '/find-us',
+    cta: 'Schedule a visit',
+  },
+];
 ---
 
 <Layout
   title="Home"
   description="Ruby's Rescue and Retreat is an animal shelter and boarding facility in Central Illinois, saving dogs from high-kill shelters and finding them loving homes."
 >
-  <div class="grid gap-8 lg:grid-cols-[1fr_280px]">
-    <div class="space-y-8">
-      <HeroSlideshow />
+  <HeroSlideshow />
 
-      <section class="rounded-2xl border border-ruby-200 bg-white p-6 shadow-sm md:p-8">
-        <h1 class="text-3xl font-bold text-ruby-800">Welcome to {site.name}</h1>
-        <p class="mt-1 text-stone-500">Founded and owned by {site.owner}</p>
+  <PageLayout>
+    <div slot="main" class="space-y-10">
+      <section class="card p-6 md:p-8">
+        <p class="section-label">About Us</p>
+        <h2 class="font-display mt-2 text-3xl font-bold text-ruby-800">Welcome to {site.name}</h2>
+        <p class="mt-1 text-sage-600">Founded and owned by {site.owner}</p>
 
-        <div class="mt-6 space-y-4 text-lg leading-relaxed text-stone-700">
+        <div class="prose-content mt-6 space-y-4">
           <p>
             We take in dogs from high-kill shelters, make them healthy again, and then find them
             wonderful homes.
@@ -32,32 +65,46 @@ import { site } from '../data/site';
             you make an appointment prior to visiting.
           </p>
         </div>
+      </section>
 
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a
-            href={site.phoneTel}
-            class="rounded-lg bg-ruby-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-ruby-700"
-          >
-            Call {site.phone}
-          </a>
-          <a
-            href={`mailto:${site.email}`}
-            class="rounded-lg border border-ruby-300 px-5 py-3 text-sm font-semibold text-ruby-700 transition hover:bg-ruby-50"
-          >
-            Email Us
-          </a>
-          <a
-            href={site.applicationUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="rounded-lg border border-ruby-300 px-5 py-3 text-sm font-semibold text-ruby-700 transition hover:bg-ruby-50"
-          >
-            Adoption Application
-          </a>
+      <section>
+        <p class="section-label">How We Help</p>
+        <h2 class="font-display mt-2 text-2xl font-bold text-ruby-800 md:text-3xl">What we do</h2>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          {
+            features.map((feature) => (
+              <a href={feature.href} class="card card-hover group p-6">
+                <span class="text-3xl">{feature.icon}</span>
+                <h3 class="font-display mt-3 text-xl font-bold text-ruby-800">{feature.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-stone-600">{feature.description}</p>
+                <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-ruby-600 group-hover:gap-2 transition-all">
+                  {feature.cta}
+                  <span aria-hidden="true">→</span>
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="card overflow-hidden">
+        <div class="grid md:grid-cols-2">
+          <img src="/images/barn.jpg" alt="Ruby's Rescue facility" class="h-full min-h-[220px] w-full object-cover" />
+          <div class="flex flex-col justify-center bg-gradient-to-br from-sage-50 to-cream-50 p-6 md:p-8">
+            <p class="section-label">Visit Us</p>
+            <h2 class="font-display mt-2 text-2xl font-bold text-ruby-800">Come see the dogs</h2>
+            <p class="mt-3 text-stone-600">
+              {site.address} — call or email to schedule your visit. We'd love to meet you.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <a href="/find-us" class="btn btn-primary">Find Us</a>
+              <a href={site.phoneTel} class="btn btn-secondary">{site.phone}</a>
+            </div>
+          </div>
         </div>
       </section>
     </div>
 
-    <Sidebar />
-  </div>
+    <Sidebar slot="sidebar" />
+  </PageLayout>
 </Layout>

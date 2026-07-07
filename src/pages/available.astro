@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import PageLayout from '../components/PageLayout.astro';
 import Sidebar from '../components/Sidebar.astro';
 import PetfinderEmbed from '../components/PetfinderEmbed.astro';
 ---
@@ -8,20 +10,17 @@ import PetfinderEmbed from '../components/PetfinderEmbed.astro';
   title="Dogs Available"
   description="Browse adoptable dogs at Ruby's Rescue and Retreat in McLean, Illinois."
 >
-  <div class="grid gap-8 lg:grid-cols-[1fr_280px]">
-    <div class="space-y-6">
-      <section class="rounded-2xl border border-ruby-200 bg-white p-6 shadow-sm">
-        <h1 class="text-3xl font-bold text-ruby-800">Dogs Available for Adoption</h1>
-        <p class="mt-3 text-stone-600">
-          Meet the dogs currently available at Ruby's Rescue and Retreat. Each dog has been vetted
-          and is ready for a loving home. Interested in adopting? Complete our application to get
-          started.
-        </p>
-      </section>
+  <PageHeader
+    eyebrow="Find Your New Best Friend"
+    title="Dogs Available for Adoption"
+    subtitle="Each dog has been vetted and is ready for a loving home. Complete our application to get started."
+    image="/images/Web3.jpg"
+  />
 
+  <PageLayout>
+    <div slot="main">
       <PetfinderEmbed />
     </div>
-
-    <Sidebar />
-  </div>
+    <Sidebar slot="sidebar" />
+  </PageLayout>
 </Layout>

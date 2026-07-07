@@ -21,11 +21,17 @@ const pageTitle = title === 'Home' ? site.name : `${title} | ${site.name}`;
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/png" href="/images/logosmaller.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&display=swap"
+      rel="stylesheet"
+    />
     <title>{pageTitle}</title>
   </head>
   <body class="flex min-h-screen flex-col">
     <Header />
-    <main class="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
+    <main class="flex-1">
       <slot />
     </main>
     <Footer />

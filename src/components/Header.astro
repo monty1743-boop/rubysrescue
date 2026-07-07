@@ -9,67 +9,127 @@ function isActive(href: string) {
 }
 ---
 
-<header class="sticky top-0 z-50 border-b border-ruby-200/60 bg-white/95 backdrop-blur">
-  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-    <a href="/" class="flex items-center gap-3">
-      <img src="/images/logosmaller.png" alt={site.name} class="h-14 w-auto" />
-      <div class="hidden sm:block">
-        <p class="text-sm font-semibold text-ruby-700">{site.name}</p>
-        <p class="text-xs text-stone-500">{site.location} · {site.phone}</p>
+<header class="sticky top-0 z-50">
+  <!-- Top bar -->
+  <div class="bg-ruby-800 text-ruby-100">
+    <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2 text-xs md:text-sm">
+      <p class="hidden sm:block">
+        <span class="text-ruby-300">{site.location}</span>
+        <span class="mx-2 text-ruby-600">·</span>
+        <a href={site.phoneTel} class="font-medium text-white hover:underline">{site.phone}</a>
+      </p>
+      <p class="sm:hidden">
+        <a href={site.phoneTel} class="font-medium text-white">{site.phone}</a>
+      </p>
+      <div class="flex items-center gap-3">
+        <a href={`mailto:${site.email}`} class="hidden hover:text-white md:inline">{site.email}</a>
+        <a
+          href={site.applicationUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-full bg-white/10 px-3 py-1 font-semibold text-white transition hover:bg-white/20"
+        >
+          Apply to Adopt
+        </a>
       </div>
-    </a>
-
-    <div class="flex items-center gap-2">
-      <a
-        href={`mailto:${site.email}`}
-        class="rounded-full p-2 text-ruby-600 transition hover:bg-ruby-50"
-        aria-label="Email us"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      </a>
-      <a
-        href={site.facebook}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="rounded-full p-2 text-ruby-600 transition hover:bg-ruby-50"
-        aria-label="Facebook group"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-        </svg>
-      </a>
-      <a
-        href={site.phoneTel}
-        class="rounded-full bg-ruby-600 px-3 py-2 text-sm font-medium text-white transition hover:bg-ruby-700"
-      >
-        Call
-      </a>
     </div>
   </div>
 
-  <nav class="border-t border-ruby-100 bg-ruby-800" aria-label="Main navigation">
-    <div class="mx-auto max-w-6xl px-4">
-      <ul class="flex flex-wrap items-center justify-center gap-1 py-2 text-sm font-medium text-white">
-        {
-          navItems.map((item) => (
-            <li>
-              <a
-                href={item.href}
-                class:list={[
-                  'block rounded-md px-3 py-2 transition',
-                  isActive(item.href)
-                    ? 'bg-white/15 text-white'
-                    : 'text-ruby-100 hover:bg-white/10 hover:text-white',
-                ]}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+  <!-- Main header -->
+  <div class="border-b border-cream-200/80 bg-white/90 backdrop-blur-md">
+    <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+      <a href="/" class="group flex items-center gap-3">
+        <div class="rounded-2xl bg-ruby-50 p-1.5 ring-1 ring-ruby-100 transition group-hover:ring-ruby-200">
+          <img src="/images/logosmaller.png" alt={site.name} class="h-12 w-auto md:h-14" />
+        </div>
+        <div>
+          <p class="font-display text-base font-bold text-ruby-800 md:text-lg">{site.name}</p>
+          <p class="text-xs text-sage-600">Rescue · Adopt · Board</p>
+        </div>
+      </a>
+
+      <div class="flex items-center gap-1">
+        <a href={site.facebook} target="_blank" rel="noopener noreferrer" class="btn-secondary hidden !rounded-full !p-2.5 sm:inline-flex" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href={`mailto:${site.email}`} class="btn-secondary hidden !rounded-full !p-2.5 sm:inline-flex" aria-label="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </a>
+        <a href={site.phoneTel} class="btn btn-primary hidden !rounded-full sm:inline-flex">Call Us</a>
+
+        <button
+          type="button"
+          id="mobile-menu-btn"
+          class="btn-secondary !rounded-xl !p-2.5 lg:hidden"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Open menu"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 menu-open" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="hidden h-5 w-5 menu-close" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
     </div>
+
+    <!-- Desktop nav -->
+    <nav class="hidden border-t border-cream-100 lg:block" aria-label="Main navigation">
+      <div class="mx-auto max-w-6xl px-4">
+        <ul class="flex items-center justify-center gap-1 py-1">
+          {
+            navItems.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class:list={[
+                    'relative block px-4 py-3 text-sm font-semibold transition',
+                    isActive(item.href)
+                      ? 'text-ruby-700 after:absolute after:inset-x-3 after:bottom-1 after:h-0.5 after:rounded-full after:bg-ruby-500'
+                      : 'text-stone-600 hover:text-ruby-700',
+                  ]}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Mobile nav -->
+  <nav id="mobile-menu" class="hidden border-b border-cream-200 bg-white lg:hidden" aria-label="Mobile navigation">
+    <ul class="mx-auto max-w-6xl space-y-1 px-4 py-3">
+      {
+        navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class:list={[
+                'block rounded-xl px-4 py-3 text-sm font-semibold transition',
+                isActive(item.href) ? 'bg-ruby-50 text-ruby-700' : 'text-stone-700 hover:bg-cream-100',
+              ]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </nav>
 </header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const openIcon = btn?.querySelector('.menu-open');
+  const closeIcon = btn?.querySelector('.menu-close');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden', isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    openIcon?.classList.toggle('hidden', !isOpen);
+    closeIcon?.classList.toggle('hidden', isOpen);
+  });
+</script>

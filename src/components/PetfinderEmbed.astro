@@ -2,7 +2,17 @@
 import { site } from '../data/site';
 ---
 
-<div class="petfinder-widget min-h-[400px] rounded-2xl border border-ruby-200 bg-white p-4 shadow-sm">
+<div class="card min-h-[480px] p-4 md:p-6">
+  <div class="mb-4 flex items-center justify-between gap-4 border-b border-cream-200 pb-4">
+    <div>
+      <p class="section-label">Live Listings</p>
+      <h2 class="font-display text-xl font-bold text-ruby-800">Our Adoptable Dogs</h2>
+    </div>
+    <a href={site.applicationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary hidden sm:inline-flex !text-xs">
+      Apply to Adopt
+    </a>
+  </div>
+
   <pet-scroller
     s3Url="https://dbw3zep4prcju.cloudfront.net/"
     apiBase="https://psl.petfinder.com/graphql"
@@ -11,7 +21,7 @@ import { site } from '../data/site';
     petfinderUrl="https://www.petfinder.com/"
     hideBreed="false"
     limit="24"
-    petListTitle="Our Adoptable Dogs"
+    petListTitle=""
   ></pet-scroller>
 </div>
 
