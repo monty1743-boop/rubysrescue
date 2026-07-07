@@ -4,6 +4,7 @@ import PageHeader from '../components/PageHeader.astro';
 import PageLayout from '../components/PageLayout.astro';
 import Sidebar from '../components/Sidebar.astro';
 import { newsItems } from '../data/site';
+import { withBase } from '../utils/base';
 ---
 
 <Layout
@@ -22,7 +23,7 @@ import { newsItems } from '../data/site';
         newsItems.map((item) => (
           <article class="card overflow-hidden">
             {'image' in item && item.image && (
-              <img src={item.image} alt={item.title} class="max-h-80 w-full object-cover" />
+              <img src={withBase(item.image)} alt={item.title} class="max-h-80 w-full object-cover" />
             )}
             <div class="p-6 md:p-8">
               <h2 class="font-display text-2xl font-bold text-ruby-800">{item.title}</h2>
@@ -37,7 +38,7 @@ import { newsItems } from '../data/site';
 
               {'video' in item && item.video && (
                 <video controls preload="metadata" class="mt-6 w-full rounded-2xl shadow-inner" title={item.title}>
-                  <source src={item.video} type="video/mp4" />
+                  <source src={withBase(`/${item.video}`)} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               )}

@@ -4,6 +4,7 @@ import HeroSlideshow from '../components/HeroSlideshow.astro';
 import Sidebar from '../components/Sidebar.astro';
 import PageLayout from '../components/PageLayout.astro';
 import { site } from '../data/site';
+import { withBase } from '../utils/base';
 
 const features = [
   {
@@ -73,7 +74,7 @@ const features = [
         <div class="mt-6 grid gap-4 sm:grid-cols-2">
           {
             features.map((feature) => (
-              <a href={feature.href} class="card card-hover group p-6">
+              <a href={withBase(feature.href)} class="card card-hover group p-6">
                 <span class="text-3xl">{feature.icon}</span>
                 <h3 class="font-display mt-3 text-xl font-bold text-ruby-800">{feature.title}</h3>
                 <p class="mt-2 text-sm leading-relaxed text-stone-600">{feature.description}</p>
@@ -89,7 +90,7 @@ const features = [
 
       <section class="card overflow-hidden">
         <div class="grid md:grid-cols-2">
-          <img src="/images/barn.jpg" alt="Ruby's Rescue facility" class="h-full min-h-[220px] w-full object-cover" />
+          <img src={withBase('/images/barn.jpg')} alt="Ruby's Rescue facility" class="h-full min-h-[220px] w-full object-cover" />
           <div class="flex flex-col justify-center bg-gradient-to-br from-sage-50 to-cream-50 p-6 md:p-8">
             <p class="section-label">Visit Us</p>
             <h2 class="font-display mt-2 text-2xl font-bold text-ruby-800">Come see the dogs</h2>
@@ -97,7 +98,7 @@ const features = [
               {site.address} — call or email to schedule your visit. We'd love to meet you.
             </p>
             <div class="mt-5 flex flex-wrap gap-3">
-              <a href="/find-us" class="btn btn-primary">Find Us</a>
+              <a href={withBase('/find-us')} class="btn btn-primary">Find Us</a>
               <a href={site.phoneTel} class="btn btn-secondary">{site.phone}</a>
             </div>
           </div>

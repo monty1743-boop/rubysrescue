@@ -1,5 +1,6 @@
 ---
 import { heroImages, site } from '../data/site';
+import { withBase } from '../utils/base';
 ---
 
 <section class="relative overflow-hidden" aria-label="Welcome">
@@ -7,7 +8,7 @@ import { heroImages, site } from '../data/site';
     {
       heroImages.map((src, index) => (
         <img
-          src={src}
+          src={withBase(src)}
           alt=""
           class:list={['slideshow-slide absolute inset-0 h-full w-full object-cover', index === 0 && 'is-active']}
           loading={index === 0 ? 'eager' : 'lazy'}
@@ -31,7 +32,7 @@ import { heroImages, site } from '../data/site';
         </p>
 
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/available" class="btn btn-primary">Meet Our Dogs</a>
+          <a href={withBase('/available')} class="btn btn-primary">Meet Our Dogs</a>
           <a
             href={site.applicationUrl}
             target="_blank"

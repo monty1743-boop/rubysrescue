@@ -1,12 +1,8 @@
 ---
 import { navItems, site } from '../data/site';
+import { isActiveRoute, withBase } from '../utils/base';
 
 const { pathname } = Astro.url;
-
-function isActive(href: string) {
-  if (href === '/') return pathname === '/';
-  return pathname.startsWith(href);
-}
 ---
 
 <header class="sticky top-0 z-50">
@@ -38,9 +34,9 @@ function isActive(href: string) {
   <!-- Main header -->
   <div class="border-b border-cream-200/80 bg-white/90 backdrop-blur-md">
     <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-      <a href="/" class="group flex items-center gap-3">
+      <a href={withBase('/')} class="group flex items-center gap-3">
         <div class="rounded-2xl bg-ruby-50 p-1.5 ring-1 ring-ruby-100 transition group-hover:ring-ruby-200">
-          <img src="/images/logosmaller.png" alt={site.name} class="h-12 w-auto md:h-14" />
+          <img src={withBase('/images/logosmaller.png')} alt={site.name} class="h-12 w-auto md:h-14" />
         </div>
         <div>
           <p class="font-display text-base font-bold text-ruby-800 md:text-lg">{site.name}</p>
@@ -79,10 +75,10 @@ function isActive(href: string) {
             navItems.map((item) => (
               <li>
                 <a
-                  href={item.href}
+                  href={withBase(item.href)}
                   class:list={[
                     'relative block px-4 py-3 text-sm font-semibold transition',
-                    isActive(item.href)
+                    isActiveRoute(item.href, pathname)
                       ? 'text-ruby-700 after:absolute after:inset-x-3 after:bottom-1 after:h-0.5 after:rounded-full after:bg-ruby-500'
                       : 'text-stone-600 hover:text-ruby-700',
                   ]}
@@ -104,10 +100,10 @@ function isActive(href: string) {
         navItems.map((item) => (
           <li>
             <a
-              href={item.href}
+              href={withBase(item.href)}
               class:list={[
                 'block rounded-xl px-4 py-3 text-sm font-semibold transition',
-                isActive(item.href) ? 'bg-ruby-50 text-ruby-700' : 'text-stone-700 hover:bg-cream-100',
+                isActiveRoute(item.href, pathname) ? 'bg-ruby-50 text-ruby-700' : 'text-stone-700 hover:bg-cream-100',
               ]}
             >
               {item.label}

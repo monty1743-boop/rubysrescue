@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../utils/base';
+
 interface Props {
   title: string;
   subtitle?: string;
@@ -8,6 +10,7 @@ interface Props {
 
 const { title, subtitle, eyebrow, image } = Astro.props;
 const hasImage = Boolean(image);
+const headerImage = image ? withBase(image) : undefined;
 ---
 
 <section
@@ -19,7 +22,7 @@ const hasImage = Boolean(image);
   {
     image && (
       <>
-        <img src={image} alt="" class="absolute inset-0 h-full w-full object-cover opacity-30" />
+        <img src={headerImage} alt="" class="absolute inset-0 h-full w-full object-cover opacity-30" />
         <div class="absolute inset-0 bg-gradient-to-r from-ruby-900/90 via-ruby-900/75 to-ruby-900/50" />
       </>
     )

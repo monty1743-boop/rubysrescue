@@ -32,11 +32,11 @@ export const navItems = [
 ] as const;
 
 export const heroImages = [
-  '/images/jeankane.jpg',
-  '/images/Web3.jpg',
-  '/images/Web4.jpg',
-  '/images/Web5.jpg',
-  '/images/barn.jpg',
+  'images/jeankane.jpg',
+  'images/Web3.jpg',
+  'images/Web4.jpg',
+  'images/Web5.jpg',
+  'images/barn.jpg',
 ] as const;
 
 export const newsItems = [
@@ -44,12 +44,12 @@ export const newsItems = [
     title: "Maggie's Story",
     description:
       'Advocate expects patients to relate to paralyzed dog\'s journey — featured by Carle Health.',
-    image: '/images/carlestory.jpg',
+    image: 'images/carlestory.jpg',
     href: 'https://newsroom.carle.org/quality-innovation/advocate-expects-patients-to-relate-to-paralyzed-dogs-journey.htm',
   },
   {
     title: 'American Red Cross Ambassador Award',
     description: 'Jean Ann Hert recognized for her community advocacy and rescue work.',
-    video: '/JeanAnnHurricane.mp4',
+    video: 'JeanAnnHurricane.mp4',
   },
 ] as const;

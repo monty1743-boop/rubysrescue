@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import PageLayout from '../components/PageLayout.astro';
 import Sidebar from '../components/Sidebar.astro';
+import { withBase } from '../utils/base';
 import { site } from '../data/site';
 ---
 
@@ -35,7 +36,7 @@ import { site } from '../data/site';
           </div>
           <a href={site.phoneTel} class="btn btn-primary mt-6">Call to Book</a>
         </div>
-        <img src="/images/img0005.png" alt="Boarding at Ruby's Rescue and Retreat" class="h-full min-h-[280px] w-full object-cover" />
+        <img src={withBase('/images/img0005.png')} alt="Boarding at Ruby's Rescue and Retreat" class="h-full min-h-[280px] w-full object-cover" />
       </div>
     </div>
     <Sidebar slot="sidebar" />

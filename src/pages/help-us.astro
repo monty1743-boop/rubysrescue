@@ -4,6 +4,7 @@ import PageHeader from '../components/PageHeader.astro';
 import PageLayout from '../components/PageLayout.astro';
 import Sidebar from '../components/Sidebar.astro';
 import { site } from '../data/site';
+import { withBase } from '../utils/base';
 ---
 
 <Layout
@@ -28,7 +29,7 @@ import { site } from '../data/site';
         </a>
 
         <a href={site.amazonWishlist} target="_blank" rel="noopener noreferrer" class="card card-hover group p-6">
-          <img src="/images/2kcj7eisui.jpg" alt="" class="h-14 w-24 rounded-xl object-cover" />
+          <img src={withBase('/images/2kcj7eisui.jpg')} alt="" class="h-14 w-24 rounded-xl object-cover" />
           <h2 class="font-display mt-5 text-xl font-bold text-ruby-800 group-hover:text-ruby-600">Amazon Wishlist</h2>
           <p class="mt-2 text-sm leading-relaxed text-stone-600">Send us the things we need through our Amazon wish list.</p>
           <span class="mt-4 inline-block text-sm font-semibold text-ruby-600">Shop Amazon →</span>
