@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { site } from '../data/site';
+---
+
+<Layout
+  title="Find Us"
+  description="Visit Ruby's Rescue and Retreat in McLean, Illinois. Call or email to schedule your visit."
+>
+  <div class="grid gap-8 lg:grid-cols-[1fr_280px]">
+    <section class="space-y-6">
+      <div class="rounded-2xl border border-ruby-200 bg-white p-6 shadow-sm md:p-8">
+        <h1 class="text-3xl font-bold text-ruby-800">Find Us</h1>
+        <p class="mt-4 text-lg text-stone-700">
+          Call or email us to schedule your visit!
+        </p>
+
+        <div class="mt-6 space-y-2 text-stone-600">
+          <p><strong class="text-stone-800">Address:</strong> {site.address}</p>
+          <p>
+            <strong class="text-stone-800">Phone:</strong>
+            <a href={site.phoneTel} class="text-ruby-700 underline">{site.phone}</a>
+          </p>
+          <p>
+            <strong class="text-stone-800">Email:</strong>
+            <a href={`mailto:${site.email}`} class="text-ruby-700 underline">{site.email}</a>
+          </p>
+        </div>
+
+        <p class="mt-4 text-sm text-stone-500">
+          We are a small private facility — please make an appointment before visiting.
+        </p>
+      </div>
+
+      <div class="overflow-hidden rounded-2xl border border-ruby-200 shadow-sm">
+        <iframe
+          src={site.googleMapsEmbed}
+          width="100%"
+          height="450"
+          style="border:0"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Map to Ruby's Rescue and Retreat"
+        ></iframe>
+      </div>
+    </section>
+
+    <Sidebar />
+  </div>
+</Layout>

@@ -1,0 +1,51 @@
+---
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-auto border-t border-ruby-200 bg-ruby-800 text-ruby-100">
+  <div class="mx-auto grid max-w-6xl gap-8 px-4 py-10 md:grid-cols-3">
+    <div>
+      <h2 class="text-lg font-semibold text-white">{site.name}</h2>
+      <p class="mt-2 text-sm leading-relaxed">{site.tagline}</p>
+    </div>
+
+    <div>
+      <h3 class="font-semibold text-white">Contact</h3>
+      <ul class="mt-2 space-y-1 text-sm">
+        <li>{site.location}</li>
+        <li>
+          <a href={site.phoneTel} class="hover:text-white">{site.phone}</a>
+        </li>
+        <li>
+          <a href={`mailto:${site.email}`} class="hover:text-white">{site.email}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="font-semibold text-white">Helpful Links</h3>
+      <ul class="mt-2 space-y-1 text-sm">
+        <li>
+          <a href={site.petMicrochipLookup} target="_blank" rel="noopener noreferrer" class="hover:text-white">
+            Is your pet microchip registered?
+          </a>
+        </li>
+        <li>
+          <a href={site.dogFoodAdvisor} target="_blank" rel="noopener noreferrer" class="hover:text-white">
+            Check out your pet's food
+          </a>
+        </li>
+        <li>
+          <a href={site.applicationUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white">
+            Submit adoption application
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-ruby-700 px-4 py-4 text-center text-xs text-ruby-200">
+    <p>&copy; {year} {site.name}. All rights reserved.</p>
+  </div>
+</footer>

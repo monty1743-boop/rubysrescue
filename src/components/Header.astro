@@ -1,0 +1,75 @@
+---
+import { navItems, site } from '../data/site';
+
+const { pathname } = Astro.url;
+
+function isActive(href: string) {
+  if (href === '/') return pathname === '/';
+  return pathname.startsWith(href);
+}
+---
+
+<header class="sticky top-0 z-50 border-b border-ruby-200/60 bg-white/95 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+    <a href="/" class="flex items-center gap-3">
+      <img src="/images/logosmaller.png" alt={site.name} class="h-14 w-auto" />
+      <div class="hidden sm:block">
+        <p class="text-sm font-semibold text-ruby-700">{site.name}</p>
+        <p class="text-xs text-stone-500">{site.location} · {site.phone}</p>
+      </div>
+    </a>
+
+    <div class="flex items-center gap-2">
+      <a
+        href={`mailto:${site.email}`}
+        class="rounded-full p-2 text-ruby-600 transition hover:bg-ruby-50"
+        aria-label="Email us"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      </a>
+      <a
+        href={site.facebook}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="rounded-full p-2 text-ruby-600 transition hover:bg-ruby-50"
+        aria-label="Facebook group"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg>
+      </a>
+      <a
+        href={site.phoneTel}
+        class="rounded-full bg-ruby-600 px-3 py-2 text-sm font-medium text-white transition hover:bg-ruby-700"
+      >
+        Call
+      </a>
+    </div>
+  </div>
+
+  <nav class="border-t border-ruby-100 bg-ruby-800" aria-label="Main navigation">
+    <div class="mx-auto max-w-6xl px-4">
+      <ul class="flex flex-wrap items-center justify-center gap-1 py-2 text-sm font-medium text-white">
+        {
+          navItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  'block rounded-md px-3 py-2 transition',
+                  isActive(item.href)
+                    ? 'bg-white/15 text-white'
+                    : 'text-ruby-100 hover:bg-white/10 hover:text-white',
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </nav>
+</header>

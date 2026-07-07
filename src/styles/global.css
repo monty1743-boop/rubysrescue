@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ruby-50: #fdf4f3;
+  --color-ruby-100: #fce8e6;
+  --color-ruby-200: #f9d4d0;
+  --color-ruby-500: #c45c52;
+  --color-ruby-600: #a9443c;
+  --color-ruby-700: #8c3832;
+  --color-ruby-800: #74302b;
+  --color-warm-50: #faf8f5;
+  --color-warm-100: #f3ede4;
+  --color-warm-800: #3d3429;
+  --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-warm-50 text-warm-800 antialiased;
+}

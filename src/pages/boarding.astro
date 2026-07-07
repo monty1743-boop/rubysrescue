@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { site } from '../data/site';
+---
+
+<Layout
+  title="Boarding"
+  description="Ruby's Rescue and Retreat offers dog boarding services in McLean, Illinois."
+>
+  <div class="grid gap-8 lg:grid-cols-[1fr_280px]">
+    <section class="rounded-2xl border border-ruby-200 bg-white p-6 shadow-sm md:p-8">
+      <h1 class="text-3xl font-bold text-ruby-800">Dog Boarding</h1>
+
+      <div class="mt-6 grid gap-8 md:grid-cols-2 md:items-start">
+        <div class="space-y-4 text-stone-700">
+          <p class="text-xl font-semibold text-ruby-700">
+            Ruby's now offers boarding!
+          </p>
+          <p>
+            In addition to our rescue work, we provide basic dog boarding services. All dogs here
+            enjoy plenty of exercise, socialization, and love — whether boarding or waiting for a
+            new home.
+          </p>
+          <p>
+            Call for availability and pricing:
+            <a href={site.phoneTel} class="font-semibold text-ruby-700 underline">{site.phone}</a>
+          </p>
+
+          <a
+            href={site.phoneTel}
+            class="inline-block rounded-lg bg-ruby-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-ruby-700"
+          >
+            Call to Book
+          </a>
+        </div>
+
+        <img
+          src="/images/img0005.png"
+          alt="Boarding facilities at Ruby's Rescue and Retreat"
+          class="rounded-xl border border-ruby-100 shadow-sm"
+        />
+      </div>
+    </section>
+
+    <Sidebar />
+  </div>
+</Layout>
